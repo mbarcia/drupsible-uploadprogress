@@ -1,0 +1,28 @@
+---
+# tasks file for drupsible.uploadprogress
+- name: Install php5-dev package
+  package:
+    name: 'php5-dev'
+    state: 'latest'
+  notify: 'Restart php5-fpm'
+
+- name: Install PECL/uploadprogress
+  pear: 
+    name: "pecl/uploadprogress" 
+    state: present
+
+- name: Create uploadprogress.ini
+  template:
+    src: 'uploadprogress.ini.ini.j2'
+    dest: '/etc/php5/mods-available/fpm/uploadprogress.ini'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: 'Restart php5-fpm'
+
+- name: Configure uploadprogress.ini for FPM
+  file:
+    src: "/etc/php5/mods-available/fpm/uploadprogress.ini"
+    dest: "/etc/php5/fpm/conf.d/20-uploadprogress.ini"
+    state: link
+  notify: 'Restart php5-fpm'
