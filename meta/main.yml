@@ -7,8 +7,6 @@ galaxy_info:
     - name: Debian
     - name: CentOS
     - name: Red Hat Enterprise Linux
-  categories:
-    - web
   galaxy_tags:
   - uploadprogress
   - pecl
