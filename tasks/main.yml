@@ -4,3 +4,5 @@
 
 - include: php5.yml
   when: uploadprogress_php_version != '7.0'
+
+- meta: flush_handlers
