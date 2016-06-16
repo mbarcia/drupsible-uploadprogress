@@ -1,12 +1,12 @@
 drupsible.uploadprogress
 ========================
 
-Installs and configure the PECL uploadprogress extension. 
+Installs and configure the PECL uploadprogress extension.
 
 Requirements
 ------------
 
-This role requires PHP5 FPM (Fast Process Manager) to be present. 
+This role requires PHP-FPM (Fast Process Manager) to be present (both PHP5 and PHP7 are supported).
 This role can be used indepedently and does NOT require Drupsible to run.
 
 Example Playbook
