@@ -1,0 +1,44 @@
+---
+- name: Install php-dev package
+  package:
+    name: 'php{{ uploadprogress_php_version }}-dev'
+    state: 'latest'
+  notify: 'Restart php-fpm'
+
+- name: Install PECL/uploadprogress
+  pear:
+    name: "pecl/uploadprogress"
+    state: present
+  notify: 'Restart php-fpm'
+
+- name: Make sure mods-available directory is present
+  file:
+    path: '{{ uploadprogress_php_etc_base }}/mods-available'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: Create uploadprogress.ini
+  template:
+    src: 'uploadprogress.ini.j2'
+    dest: '{{ uploadprogress_php_etc_base }}/mods-available/uploadprogress.ini'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: 'Restart php-fpm'
+
+- name: Make sure conf.d is present
+  file:
+    path: '{{ uploadprogress_php_etc_base }}/fpm/conf.d'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: Configure uploadprogress.ini for FPM
+  file:
+    src: "{{ uploadprogress_php_etc_base }}/mods-available/uploadprogress.ini"
+    dest: "{{ uploadprogress_php_etc_base }}/fpm/conf.d/20-uploadprogress.ini"
+    state: link
+  notify: 'Restart php-fpm'

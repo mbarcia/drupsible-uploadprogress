@@ -1,6 +1,6 @@
 ---
 # handlers file for drupsible.uploadprogress
-- name: Restart php5-fpm
-  service: 
-    name: php5-fpm 
+- name: Restart php-fpm
+  service:
+    name: "php{{ uploadprogress_php_version }}-fpm"
     state: restarted

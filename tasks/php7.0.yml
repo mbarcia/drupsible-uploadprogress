@@ -1,0 +1,18 @@
+---
+- name: "Add Ondřej Surý PPA key"
+  apt_key:
+    keyserver: "keyserver.ubuntu.com"
+    id: 4F4EA0AAE5267A6C
+    state: present
+
+- name: "Add Ondřej Surý PPA repository"
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+    state: present
+    update_cache: yes
+
+- name: Install php-uploadprogress package
+  package:
+    name: php-uploadprogress
+    state: latest
+  notify: 'Restart php-fpm'
