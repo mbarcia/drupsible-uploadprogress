@@ -1,2 +1,3 @@
 ---
 # defaults file for drupsible.uploadprogress
+uploadprogress_php_version_default: "{{ (ansible_distribution_release == 'xenial')|ternary('7.0', '5' ) }}"

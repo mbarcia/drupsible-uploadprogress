@@ -4,3 +4,4 @@
   service:
     name: "php{{ uploadprogress_php_version }}-fpm"
     state: restarted
+  when: not packer|default(False)|bool
