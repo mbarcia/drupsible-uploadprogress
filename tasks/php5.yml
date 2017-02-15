@@ -4,12 +4,14 @@
     name: 'php{{ uploadprogress_php_version }}-dev'
     state: 'latest'
   notify: 'Restart php-fpm'
+  tags: [ provision ]
 
 - name: Install PECL/uploadprogress
   pear:
     name: "pecl/uploadprogress"
     state: present
   notify: 'Restart php-fpm'
+  tags: [ provision ]
 
 - name: Make sure mods-available directory is present
   file:
