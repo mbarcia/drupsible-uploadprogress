@@ -15,4 +15,5 @@
   package:
     name: php-uploadprogress
     state: latest
+    use: apt
   notify: 'Restart php-fpm'

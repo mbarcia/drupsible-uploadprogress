@@ -2,7 +2,8 @@
 - name: Install php-dev package
   package:
     name: 'php{{ uploadprogress_php_version }}-dev'
-    state: 'latest'
+    state: latest
+    use: apt
   notify: 'Restart php-fpm'
   tags: [ provision ]
 
